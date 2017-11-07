@@ -14,5 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  Movie.associate = models => {
+    Movie.hasMany(models.ProfileMovie);
+    Movie.belongsToMany(models.Profile, { through: models.ProfileMovie });
+    Movie.belongsTo(models.Schedule);
+  }
   return Movie;
 };

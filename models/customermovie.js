@@ -10,5 +10,9 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  CustomerMovie.associate = models => {
+    CustomerMovie.belongsTo(models.Profile);
+    CustomerMovie.belongsTo(models.Movie);
+  }
   return CustomerMovie;
 };

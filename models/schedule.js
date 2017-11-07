@@ -1,7 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Schedule = sequelize.define('Schedule', {
-    time: DataTypes.STRING
+    time: DataTypes.STRING,
+    studio: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
@@ -9,5 +10,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  Schedule.associate = models => {
+    Schedule.hasMany(models.Movie)
+  }
   return Schedule;
 };

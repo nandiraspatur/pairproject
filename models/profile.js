@@ -15,6 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   });
   Profile.associate = models => {
     Profile.belongsTo(models.User);
+    Profile.hasMany(models.ProfileMovie);
+    Profile.belongsToMany(models.Movie, { through: models.ProfileMovie });
   }
 
   return Profile;
