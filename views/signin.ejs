@@ -2,45 +2,29 @@
 <html>
   <%include ./partials/head.ejs%>
   <body>
-    <div class="ui large top fixed hidden menu">
-      <div class="ui container">
-        <a href="/" class="item">Home</a>
-        <a href="/movies" class="item">Movies</a>
-        <a href="/showtime" class="item">ShowTime</a>
-        <div class="right menu">
-          <div class="item">
-            <a class="ui button">Sign in</a>
-          </div>
-          <div class="item">
-            <a class="ui primary button">Sign Up</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%include ./partials/menu.ejs%>
     <!--Page Contents-->
     <div class="pusher">
-      <div class="ui inverted vertical masthead center aligned segment bg-image">
-        <div class="ui container">
-          <div class="ui inverted large secondary menu">
-            <a href="/" class="active item">Home</a>
-            <a href="/movies" class="item">Movies</a>
-            <a href="/showtime" class="item">ShowTime</a>
-
-            <div class="right item">
-              <a href="/signin" class="ui inverted button">Sign in</a><a href="signup" class="ui inverted button">Sign Up</a>
-            </div>
-          </div>
-        </div>
-        <div class="ui text container">
-          <div class="ui grid center aligned" style="margin-top:100px;">
-            <div class="ten wide column">
-              <div class="ui left icon input">
-                <input placeholder="Search users..." type="text">
-                <i class="users icon"></i>
-              </div>
-              <div class="ui left icon input">
-                <input placeholder="Search users..." type="text">
-                <i class="users icon"></i>
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container">
+          <div class="ui text container">
+            <div class="ui grid center aligned" style="margin-top:60px;margin-bottom:60px">
+              <div class="ten wide column login-area">
+                <form action="/signin" method="post">
+                  <h2 style="color:#fff">Member Login</h2>
+                  <div class="ui left icon input" style="margin-top:15px">
+                    <input type="text" name="username" placeholder="Username" type="text">
+                    <i class="user icon"></i>
+                  </div>
+                  <div class="ui left icon input" style="margin-top:10px;">
+                    <input type="password" name="password" placeholder="Password" type="text">
+                    <i class="configure icon"></i>
+                  </div>
+                  <div class="ui">
+                    <input type="submit" value="Sign in" class="ui inverted button" style="margin-top:10px;margin-bottom:40px">
+                  </div>
+                  <span>Belum punya akun? <a href="/signup" style="color:#fff">Sign Up</a></span>
+                </form>
               </div>
             </div>
           </div>

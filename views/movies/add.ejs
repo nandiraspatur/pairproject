@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partials/head.ejs%>
+  <body>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container">
+          <div class="ui text container">
+            <div class="ui grid centered aligned" style="margin-top:60px;margin-bottom:60px">
+              <div class="twelve wide column">
+                <form class="ui form segment" action="/movies/add" method="post" enctype="multipart/form-data">
+                  <div class="field">
+                    <label>Judul Film</label>
+                    <input type="text" name="title" placeholder="Judul Film">
+                  </div>
+                  <div class="two fields">
+                    <div class="field">
+                      <label>Genre</label>
+                      <input type="text" name="genre" placeholder="Genre Film">
+                    </div>
+                    <div class="field">
+                      <label>Durasi</label>
+                      <input type="text" name="duration" placeholder="Durasi Film">
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Deskripsi</label>
+                    <input type="text" name="description" placeholder="Deskripsi">
+                  </div>
+                  <div class="two fields">
+                    <div class="field">
+                      <label>Gender</label>
+                      <select class="ui dropdown" name="gender">
+                        <option value="">Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>Harga Tiket</label>
+                      <input type="text" name="ticket_price" placeholder="Harga Tiket">
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Poster</label>
+                    <input type="file" name="pic">
+                  </div>
+                  <input class="ui primary button" type="submit" value="Submit">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%include ../partials/footer.ejs%>
+    </div>
+  </body>
+</html>

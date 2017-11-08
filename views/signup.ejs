@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Sign Up Page</title>
-  </head>
+  <%include ./partials/head.ejs%>
   <body>
-    <h1>Create your account</h1>
-    <form class="" action="/signup" method="post">
-      <label for="">Username</label>
-      <input type="text" name="username" placeholder="choose your username"><br>
-      <label for="">Password</label>
-      <input type="password" name="password" placeholder="create a password"><br>
-      <!-- set default role -->
-      <input type="text" name="role" value="customer" hidden>
-      <!-- end set default role -->
-      <input type="submit" value="Submit">
-    </form>
+    <%include ./partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container">
+          <div class="ui text container">
+            <div class="ui grid center aligned" style="margin-top:60px;margin-bottom:60px">
+              <div class="ten wide column login-area">
+                <form action="/signup" method="post">
+                  <h2 style="color:#fff">Registrasi Member</h2>
+                  <div class="ui left icon input" style="margin-top:15px">
+                    <input type="text" name="username" placeholder="Pilih Username Anda" type="text">
+                    <i class="user icon"></i>
+                  </div>
+                  <div class="ui left icon input" style="margin-top:10px;">
+                    <input type="password" name="password" placeholder="Buat Password Baru" type="text">
+                    <i class="configure icon"></i>
+                  </div>
+                  <input type="text" name="role" value="customer" hidden>
+                  <div class="ui">
+                    <input type="submit" value="Sign Up" class="ui primary button" style="margin-top:10px;margin-bottom:40px">
+                  </div>
+                  <span>Sudah punya akun? <a href="/signup" style="color:#fff">Sign In</a></span>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%include ./partials/footer.ejs%>
+    </div>
   </body>
 </html>

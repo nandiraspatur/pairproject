@@ -13,17 +13,35 @@
             </div>
           </div>
           <div class="ui four column row">
-            <%for(var i = 0; i<10; i++){%>
+            <%movies.forEach(movie => {%>
               <div class="column">
-                <div class="ui segment center aligned">
-                  <img src="/img/tes.jpg">
-                  <p>qweuiysa askjhdas kasdkj sakfjsncjslkajsd lkajsdnlkjasc</p>
-                  <div class="ui primary button">
-                    Book
+                <div class="ui segment">
+                  <div class="ui card" data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>">
+                    <div class="image">
+                      <img src="/img/tes.jpg">
+                    </div>
+                    <div class="content">
+                      <div class="header">
+                        <%=movie.title%>
+                      </div>
+                      <div class="description">
+                        <%=movie.description%>
+                      </div>
+                    </div>
+                    <div class="ui two bottom attached buttons">
+                      <div class="ui button">
+                        <i class="add icon"></i>
+                        More
+                      </div>
+                      <div class="ui primary button">
+                        <i class="play icon"></i>
+                        Pesan
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            <%}%>
+            <%})%>
           </div>
           <div class="row">
             <div class="center aligned column">
