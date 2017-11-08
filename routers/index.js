@@ -1,11 +1,10 @@
 // require libraries
 const express = require('express')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt')
+const router = express.Router()
 
 // require model
 const Model = require('../models')
-
-const router = express.Router()
 
 // define the home page route
 router.get('/', function(req, res) {
@@ -38,8 +37,16 @@ router.post('/signin', function(req, res) {
     bcrypt.compare(req.body.password, user.password).then(function(success) {
       if(success) {
         req.session.auth = true
+        req.session.UserId = user.id
         req.session.username = req.body.username
-        res.redirect('/profile')
+        Model.Profile.findOne({where : {UserId: req.session.UserId}})
+        .then(profile => {
+          if(profile) {
+            res.redirect('/movies')
+          } else {
+            res.redirect('/profile/create')
+          }
+        })
       } else {
         res.render('signin', {error: true})
       }

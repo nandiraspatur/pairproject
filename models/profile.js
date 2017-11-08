@@ -13,5 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  Profile.prototype.getFullName = function () {
+    return `${this.first_name} ${this.last_name}`
+  };
   return Profile;
 };
