@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <%include ./partials/head.ejs%>
+  <body>
+    <div class="ui large top fixed hidden menu">
+      <div class="ui container">
+        <a href="/" class="item">Home</a>
+        <a href="/movies" class="item">Movies</a>
+        <a href="/showtime" class="item">ShowTime</a>
+        <div class="right menu">
+          <div class="item">
+            <a class="ui button">Sign in</a>
+          </div>
+          <div class="item">
+            <a class="ui primary button">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui inverted vertical masthead center aligned segment bg-image">
+        <div class="ui container">
+          <div class="ui inverted large secondary menu">
+            <a href="/" class="active item">Home</a>
+            <a href="/movies" class="item">Movies</a>
+            <a href="/showtime" class="item">ShowTime</a>
+
+            <div class="right item">
+              <a href="/signin" class="ui inverted button">Sign in</a><a href="signup" class="ui inverted button">Sign Up</a>
+            </div>
+          </div>
+        </div>
+        <div class="ui text container">
+          <h1 class="ui inverted header">
+            Box Office Movie.
+          </h1>
+          <h2>
+            Dapatkan Tiket Film Favoritmu Disini
+          </h2>
+          <div class="ui huge primary button">
+            Pesan Sekarang<i class="right arrow icon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+          <div class="row">
+            <div class="center aligned column">
+              <h3>Film Terpopuler</h3>
+            </div>
+          </div>
+          <div class="ui four column row">
+            <%for(var i = 0; i<8; i++){%>
+              <div class="column">
+                <div class="ui segment">
+                  <div class="ui card" data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>">
+                    <div class="image">
+                      <img src="/img/tes.jpg">
+                    </div>
+                    <div class="content">
+                      <div class="header">My Neighbor Totoro</div>
+                      <div class="description">
+                        Two sisters move to the country with their father in order to be closer to their hospitalized mother, and discover the surrounding trees are inhabited by magical spirits.
+                      </div>
+                    </div>
+                    <div class="ui two bottom attached buttons">
+                      <div class="ui button">
+                        <i class="add icon"></i>
+                        More
+                      </div>
+                      <div class="ui primary button">
+                        <i class="play icon"></i>
+                        Pesan
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <%}%>
+          </div>
+          <div class="row">
+            <div class="center aligned column">
+              <a class="ui huge button">Find More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%include ./partials/footer.ejs%>
+    </div>
+    <script>
+      $(document)
+        .ready(function() {
+          // fix menu when passed
+          $('.masthead')
+            .visibility({
+              once: false,
+              onBottomPassed: function() {
+                $('.fixed.menu').transition('fade in');
+              },
+              onBottomPassedReverse: function() {
+                $('.fixed.menu').transition('fade out');
+              }
+            })
+          ;
+
+          // create sidebar and attach to menu open
+          $('.ui.sidebar')
+            .sidebar('attach events', '.toc.item')
+          ;
+        })
+      ;
+    </script>
+  </body>
+</html>

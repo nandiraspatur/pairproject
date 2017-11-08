@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Movies Page</title>
-  </head>
+  <%include ../partials/head.ejs%>
   <body>
-    <div class="">
-      <h1>Welcome To Movies Page</h1>
-      <p>You are logged in as </p>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container">
+          <div class="row">
+            <div class="center aligned column">
+              <h3>List Of Movie</h3>
+            </div>
+          </div>
+          <div class="ui four column row">
+            <%for(var i = 0; i<10; i++){%>
+              <div class="column">
+                <div class="ui segment center aligned">
+                  <img src="/img/tes.jpg">
+                  <p>qweuiysa askjhdas kasdkj sakfjsncjslkajsd lkajsdnlkjasc</p>
+                  <div class="ui primary button">
+                    Book
+                  </div>
+                </div>
+              </div>
+            <%}%>
+          </div>
+          <div class="row">
+            <div class="center aligned column">
+              <a class="ui huge button">Find More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%include ../partials/footer.ejs%>
     </div>
   </body>
 </html>

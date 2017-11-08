@@ -8,7 +8,8 @@ const Model = require('../models')
 
 // define the home page route
 router.get('/', function(req, res) {
-  res.send('Welcone To Cinema Hacktiv8')
+  res.render('index')
+  // res.send('Welcone To Cinema Hacktiv8')
 })
 
 router.get('/signup', function(req, res) {
