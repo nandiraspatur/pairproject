@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profile Page</title>
+  </head>
+  <body>
+    <h1>Please complete your profile before booking tickets</h1>
+    <form class="" action="/profile/create" method="post">
+      <label for="">First Name</label>
+      <input type="text" name="first_name" placeholder="input your first name"><br>
+      <label for="">Last Name</label>
+      <input type="text" name="last_name" placeholder="input your last name"><br>
+      <label for="">Email</label>
+      <input type="email" name="email" placeholder="input your email address"><br>
+      <label for="">Phone</label>
+      <input type="text" name="phone_number" placeholder="input your phone number"><br>
+      <!-- set SubjectId-->
+      <input type="number" name="UserId" value="<%= UserId %>" hidden>
+      <!-- end set SubjectId-->
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
