@@ -17,5 +17,12 @@ module.exports = (sequelize, DataTypes) => {
   Profile.prototype.getFullName = function () {
     return `${this.first_name} ${this.last_name}`
   };
+
+  Profile.associate = models => {
+    Profile.belongsTo(models.User);
+    Profile.hasMany(models.ProfileMovie);
+    Profile.belongsToMany(models.Movie, { through: models.ProfileMovie });
+  }
+
   return Profile;
 };
