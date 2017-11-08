@@ -7,6 +7,7 @@ var session = require('express-session')
 const index = require('./routers/index')
 const profile = require('./routers/profile')
 const movies = require('./routers/movies')
+const auth = require('./helpers/checkAuth')
 
 // invoke express
 const app = express()
@@ -22,9 +23,10 @@ app.use(session({
   secret: 'hacktiv8'
 }))
 
+
 // website routes
 app.use('/', index)
-app.use('/profile', profile)
+app.use('/profile', auth, profile)
 app.use('/movies', movies)
 
 // app port

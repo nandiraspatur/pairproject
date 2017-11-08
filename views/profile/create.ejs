@@ -6,6 +6,9 @@
   </head>
   <body>
     <h1>Please complete your profile before booking tickets</h1>
+    <%if(error) { %>
+      <h4 style="color: red"><%= error %></h4>
+    <% } %>
     <form class="" action="/profile/create" method="post">
       <label for="">First Name</label>
       <input type="text" name="first_name" placeholder="input your first name"><br>
