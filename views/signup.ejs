@@ -6,6 +6,9 @@
   </head>
   <body>
     <h1>Create your account</h1>
+    <%if(error) { %>
+      <h4 style="color: red"><%= error %></h4>
+    <% } %>
     <form class="" action="/signup" method="post">
       <label for="">Username</label>
       <input type="text" name="username" placeholder="choose your username"><br>

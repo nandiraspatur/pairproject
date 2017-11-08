@@ -14,13 +14,18 @@ router.get('/', function(req, res) {
 })
 
 router.get('/create', function(req, res) {
-  res.render('profile/create', {UserId: req.session.UserId})
+  res.render('profile/create', {UserId: req.session.UserId, error: false})
 })
 
 router.post('/create', function(req, res) {
   Model.Profile.create(req.body)
   .then(() => {
     res.redirect('/profile')
+  })
+  .catch(error => {
+    // res.send(error.errors[0].message)
+    let errorMsg = error.errors[0].message
+    res.render('profile/create', {UserId: req.session.UserId, error: errorMsg})
   })
 })
 

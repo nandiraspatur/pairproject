@@ -22,7 +22,9 @@ router.post('/signup', function(req, res) {
     res.redirect('/signin')
   })
   .catch(error => {
-    res.render('signup', {error: true})
+    // res.send(error.errors[0].message)
+    let errorMsg = error.errors[0].message
+    res.render('signup', {error: errorMsg})
   })
 })
 
@@ -49,7 +51,9 @@ router.post('/signin', function(req, res) {
           }
         })
       } else {
-        res.render('signin', {error: true})
+        let errorMsg = error.errors[0].message
+        // res.send(errorMsg)
+        res.render('signin', {error: errorMsg})
       }
     });
   })
