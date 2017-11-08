@@ -9,11 +9,14 @@ const Model = require('../models')
 // define the home page route
 router.get('/', function(req, res) {
   res.render('index')
-  // res.send('Welcone To Cinema Hacktiv8')
 })
 
 router.get('/signup', function(req, res) {
-  res.render('signup', {error: false})
+  if(req.session.auth) {
+    res.redirect('/profile')
+  } else {
+    res.render('signup', {error: false})
+  }
 })
 
 router.post('/signup', function(req, res) {
@@ -29,7 +32,11 @@ router.post('/signup', function(req, res) {
 })
 
 router.get('/signin', function(req, res) {
-  res.render('signin', {error: false})
+  if(req.session.auth) {
+    res.redirect('/profile')
+  } else {
+    res.render('signin', {error: false})
+  }
 })
 
 router.post('/signin', function(req, res) {
