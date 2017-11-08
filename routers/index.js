@@ -3,7 +3,8 @@ const router = express.Router()
 
 // define the home page route
 router.get('/', function(req, res) {
-  res.send('Welcone To Cinema Hacktiv8')
+  res.render('index')
+  // res.send('Welcone To Cinema Hacktiv8')
 })
 
 router.get('/signup', function(req, res) {
@@ -15,7 +16,7 @@ router.post('/signup', function(req, res) {
 })
 
 router.get('/signin', function(req, res) {
-  res.render('sigin')
+  res.render('signin')
 })
 
 router.post('/signin', function(req, res) {
