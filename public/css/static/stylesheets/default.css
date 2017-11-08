@@ -17,6 +17,14 @@ footer p {
     background-position: fixed !important;
 }
 
+.login-area {
+  background: rgba(52, 152, 219,1.0) !important;
+  border-radius: 5px !important;
+  -webkit-box-shadow: 4px 4px 14px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 4px 14px -3px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 14px -3px rgba(0,0,0,0.75);
+}
+
 ul,
 ol {
   padding-left: 2rem; }
