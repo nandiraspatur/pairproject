@@ -1,13 +1,15 @@
 // require libraries
 const express = require('express')
 const bodyParser = require('body-parser')
-var session = require('express-session')
+const session = require('express-session')
+
+const auth = require('./helpers/checkAuth')
 
 // require routers
 const index = require('./routers/index')
 const profile = require('./routers/profile')
 const movies = require('./routers/movies')
-const auth = require('./helpers/checkAuth')
+const schedules = require('./routers/schedules')
 
 // invoke express
 const app = express()
@@ -28,6 +30,7 @@ app.use(session({
 app.use('/', index)
 app.use('/profile', auth, profile)
 app.use('/movies', movies)
+app.use('/schedules', schedules)
 
 // app port
 app.listen(3000, () => {

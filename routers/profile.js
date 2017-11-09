@@ -9,12 +9,12 @@ const Model = require('../models')
 router.get('/', function(req, res) {
   Model.Profile.findOne({where: {UserId: req.session.UserId}})
   .then(profile => {
-    res.render('profile/index', {dataProfile: profile})
+    res.render('profile/index', {dataProfile: profile, auth:req.session.auth})
   })
 })
 
 router.get('/create', function(req, res) {
-  res.render('profile/create', {UserId: req.session.UserId, error: false})
+  res.render('profile/create', {UserId: req.session.UserId, error: false, auth:req.session.auth})
 })
 
 router.post('/create', function(req, res) {
@@ -26,14 +26,14 @@ router.post('/create', function(req, res) {
   .catch(error => {
     // res.send(error.errors[0].message)
     let errorMsg = error.errors[0].message
-    res.render('profile/create', {UserId: req.session.UserId, error: errorMsg})
+    res.render('profile/create', {UserId: req.session.UserId, error: errorMsg, auth:req.session.auth})
   })
 })
 
 router.get('/edit', function(req, res) {
   Model.Profile.findOne({where: {UserId: req.session.UserId}})
   .then(profile => {
-    res.render('profile/edit', {dataProfile: profile})
+    res.render('profile/edit', {dataProfile: profile, auth:req.session.auth})
   })
 })
 

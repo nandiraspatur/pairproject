@@ -4,6 +4,7 @@ const multer  = require('multer')
 const upload = multer({ dest: 'public/uploads/' })
 const getCodeTicket = require('../helpers/getCodeTicket')
 const nodemailer = require('../helpers/nodemailer')
+const smsGateway = require('../helpers/smsGateway')
 const auth = require('../helpers/checkAuth')
 
 const Model = require('../models');
@@ -12,13 +13,13 @@ const Model = require('../models');
 router.get('/', function(req, res) {
   Model.Movie.findAll().then(movies => {
     // res.send(movies)
-    res.render('movies/index', {movies:movies})
+    res.render('movies/index', {movies:movies, auth:req.session.auth})
   })
 })
 
 router.get('/add', auth, function (req,res) {
   Model.Schedule.findAll().then(schedules => {
-    res.render('movies/add', {schedules:schedules})
+    res.render('movies/add', {schedules:schedules, auth:req.session.auth})
   })
 })
 
@@ -30,20 +31,23 @@ router.post('/add', auth, upload.single('pic'), function (req, res, next) {
   })
 })
 
-router.get('/:id', auth, function (req, res) {
+router.get('/:id', function (req, res) {
   Model.Movie.findById(req.params.id, {
     include :{
       model: Model.Schedule
     }
   }).then(movie => {
     // res.send(movie)
-    res.render('movies/detail', {movie:movie})
+    res.render('movies/detail', {movie:movie, auth:req.session.auth})
   })
 })
 
 router.get('/edit/:id', auth, function(req,res) {
-  Model.Movie.findById(req.params.id).then(movie => {
-    res.render('movies/edit', {movie: movie})
+  Promise.all([
+    Model.Movie.findById(req.params.id),
+    Model.Schedule.findAll()
+  ]).then(rows => {
+    res.render('movies/edit', {movie: rows[0], schedules:rows[1], auth:req.session.auth})
   }).catch(error => {
     res.send(error)
   })
@@ -66,7 +70,7 @@ router.get('/delete/:id', auth, function(req, res) {
 })
 
 router.get('/book', auth, function(req, res) {
-  res.render('movies/book')
+  res.render('movies/book', {auth:req.session.auth})
 
 })
 
@@ -80,7 +84,7 @@ router.get('/:id/book', auth, function(req, res) {
     Model.Profile.findOne({where:{UserId:req.session.UserId}})
   ]).then(rows => {
     // res.send(movie)
-    res.render('movies/book', {movie:rows[0], profile:rows[1]})
+    res.render('movies/book', {movie:rows[0], profile:rows[1], auth:req.session.auth})
   })
 })
 
@@ -93,7 +97,6 @@ router.get('/:id/book/confirm', auth, function(req, res) {
       buy_date:date.toISOString(),
       ticket_code: getCodeTicket()
     }
-    console.log(pm);
     Model.ProfileMovie.create(pm).then(() => {
       Model.ProfileMovie.findOne({
         where: {MovieId: pm.MovieId, ProfileId: pm.ProfileId},
@@ -104,6 +107,7 @@ router.get('/:id/book/confirm', auth, function(req, res) {
       }).then(dataOrder => {
         let dataTransaction = {
           ticket: dataOrder.ticket_code,
+          phone_number: dataOrder.Profile.phone_number,
           buyDate: dataOrder.buy_date,
           movieTitle: dataOrder.Movie.title,
           ticketPrice: dataOrder.Movie.ticket_price,
@@ -113,6 +117,7 @@ router.get('/:id/book/confirm', auth, function(req, res) {
           profileEmail: dataOrder.Profile.email
         }
         // res.send(dataTransaction)
+        smsGateway(dataTransaction.ticket, dataTransaction.phone_number)
         nodemailer(dataTransaction)
         res.redirect('/profile/history')
       })

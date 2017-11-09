@@ -6,7 +6,7 @@
       <div class="ui container">
         <a href="/" class="item">Home</a>
         <a href="/movies" class="item">Movies</a>
-        <a href="/showtime" class="item">ShowTime</a>
+        <a href="/movies/showtime" class="item">ShowTime</a>
         <div class="right menu">
           <div class="item">
             <a class="ui button">Sign in</a>
@@ -24,10 +24,17 @@
           <div class="ui inverted large secondary menu">
             <a href="/" class="active item">Home</a>
             <a href="/movies" class="item">Movies</a>
-            <a href="/showtime" class="item">ShowTime</a>
+            <a href="/schedules" class="item">Schedules</a>
 
             <div class="right item">
-              <a href="/signin" class="ui inverted button">Sign in</a><a href="signup" class="ui inverted button">Sign Up</a>
+              <%if(auth){%>
+                <a href="/movies/add" class="ui inverted button">Add Movie</a>
+                <a href="/profile" class="ui inverted button">Profile</a>
+                <a href="/logout" class="ui inverted button">Logout</a>
+              <%}else{%>
+                <a href="/signin" class="ui inverted button">Sign in</a>
+                <a href="/signup" class="ui inverted button">Sign Up</a>
+              <%}%>
             </div>
           </div>
         </div>
@@ -38,9 +45,9 @@
           <h2>
             Dapatkan Tiket Film Favoritmu Disini
           </h2>
-          <div class="ui huge primary button">
+          <a href="/movies" class="ui huge primary button">
             Pesan Sekarang<i class="right arrow icon"></i>
-          </div>
+          </a>
         </div>
       </div>
       <div class="ui vertical stripe segment">
@@ -51,37 +58,45 @@
             </div>
           </div>
           <div class="ui four column row">
-            <%for(var i = 0; i<8; i++){%>
+            <%movies.forEach(movie => {%>
               <div class="column">
                 <div class="ui segment">
-                  <div class="ui card" data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>">
+                  <div class="ui card">
+                    <%if(auth){%>
+                      <a href="/movies/edit/<%=movie.id%>">
+                        <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 15px;font-size:30px;color:#fff"></i>
+                      </a>
+                    <%}%>
                     <div class="image">
-                      <img src="/img/tes.jpg">
+                      <img src="/uploads/<%=movie.picture_name%>">
                     </div>
                     <div class="content">
-                      <div class="header">My Neighbor Totoro</div>
+                      <div class="header">
+                        <%=movie.title%>
+                      </div>
                       <div class="description">
-                        Two sisters move to the country with their father in order to be closer to their hospitalized mother, and discover the surrounding trees are inhabited by magical spirits.
+                        <%var des = movie.description.slice(0, 82)%>
+                        <%=des%>...
                       </div>
                     </div>
                     <div class="ui two bottom attached buttons">
-                      <div class="ui button">
+                      <a class="ui button" href="/movies/<%=movie.id%>" style="color:#333">
                         <i class="add icon"></i>
-                        More
-                      </div>
-                      <div class="ui primary button">
+                        Detail
+                      </a>
+                      <a class="ui primary button" href="/movies/<%=movie.id%>/book" style="color:#fff">
                         <i class="play icon"></i>
                         Pesan
-                      </div>
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
-            <%}%>
+            <%})%>
           </div>
           <div class="row">
             <div class="center aligned column">
-              <a class="ui huge button">Find More</a>
+              <a href="/movies" class="ui huge button">Find More</a>
             </div>
           </div>
         </div>

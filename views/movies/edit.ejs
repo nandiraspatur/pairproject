@@ -31,11 +31,14 @@
                   </div>
                   <div class="two fields">
                     <div class="field">
-                      <label>Gender</label>
-                      <select class="ui dropdown" name="gender">
-                        <option value="">Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                      <label>Jam Tayang</label>
+                      <select class="ui dropdown" name="ScheduleId">
+                        <option value="">-pilih jam-</option>
+                        <%schedules.forEach(schedule => {
+                          if(movie.ScheduleId == schedule.id){%>
+                          <option value="<%=schedule.id%>" selected><%=schedule.time%></option>
+                        <%}
+                      })%>
                       </select>
                     </div>
                     <div class="field">
@@ -44,8 +47,8 @@
                     </div>
                   </div>
                   <div class="field">
-                    <label>Poster</label>
-                    <input type="file" name="pic">
+                    <label>Poster (Baru)</label>
+                    <input type="file" name="pic" value="<%= movie.picture_name %>">
                   </div>
                   <input class="ui primary button" type="submit" value="Submit">
                 </form>

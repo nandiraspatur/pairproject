@@ -9,7 +9,7 @@
         <div class="ui middle aligned stackable grid container">
           <div class="row">
             <div class="center aligned column">
-              <h3>List Of Movie</h3>
+              <h3>Daftar Film</h3>
             </div>
           </div>
           <div class="ui four column row">
@@ -17,9 +17,11 @@
               <div class="column">
                 <div class="ui segment">
                   <div class="ui card">
-                    <a href="/movies/edit/<%=movie.id%>">
-                      <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 15px;font-size:30px;color:#fff"></i>
-                    </a>
+                    <%if(auth){%>
+                      <a href="/movies/edit/<%=movie.id%>">
+                        <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 15px;font-size:30px;color:#fff"></i>
+                      </a>
+                    <%}%>
                     <div class="image">
                       <img src="/uploads/<%=movie.picture_name%>">
                     </div>
@@ -33,14 +35,14 @@
                       </div>
                     </div>
                     <div class="ui two bottom attached buttons">
-                      <div class="ui button">
+                      <a class="ui button" href="/movies/<%=movie.id%>" style="color:#333">
                         <i class="add icon"></i>
-                        <a href="/movies/<%=movie.id%>" style="color:#333">Detail</a>
-                      </div>
-                      <div class="ui primary button">
+                        Detail
+                      </a>
+                      <a class="ui primary button" href="/movies/<%=movie.id%>/book" style="color:#fff">
                         <i class="play icon"></i>
-                        <a href="/movies/<%=movie.id%>/book" style="color:#fff">Pesan</a>
-                      </div>
+                        Pesan
+                      </a>
                     </div>
                   </div>
                 </div>

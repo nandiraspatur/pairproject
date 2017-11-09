@@ -8,14 +8,17 @@ const Model = require('../models')
 
 // define the home page route
 router.get('/', function(req, res) {
-  res.render('index')
+  Model.Movie.findAll({limit:4}).then(movies => {
+    // res.send(movies)
+    res.render('index', {movies:movies, auth:req.session.auth})
+  })
 })
 
 router.get('/signup', function(req, res) {
   if(req.session.auth) {
     res.redirect('/profile')
   } else {
-    res.render('signup', {error: false})
+    res.render('signup', {error: false, auth:req.session.auth})
   }
 })
 
@@ -27,7 +30,7 @@ router.post('/signup', function(req, res) {
   .catch(error => {
     // res.send(error.errors[0].message)
     let errorMsg = error.errors[0].message
-    res.render('signup', {error: errorMsg})
+    res.render('signup', {error: errorMsg, auth:req.session.auth})
   })
 })
 
@@ -35,7 +38,7 @@ router.get('/signin', function(req, res) {
   if(req.session.auth) {
     res.redirect('/profile')
   } else {
-    res.render('signin', {error: false})
+    res.render('signin', {error: false, auth:req.session.auth})
   }
 })
 
@@ -61,12 +64,18 @@ router.post('/signin', function(req, res) {
       } else {
         let errorMsg = error.errors[0].message
         // res.send(errorMsg)
-        res.render('signin', {error: errorMsg})
+        res.render('signin', {error: errorMsg, auth:req.session.auth})
       }
     });
   })
   .catch(error => {
-    res.render('signin', {error: true})
+    res.render('signin', {error: true, auth:req.session.auth})
+  })
+})
+
+router.get('/logout', (req, res) => {
+  req.session.destroy(function(err) {
+    res.redirect('/signin')
   })
 })
 
