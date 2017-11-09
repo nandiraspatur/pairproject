@@ -17,15 +17,19 @@
                 <%if(profile.picture_name){%>
                   <img src="/uploads/<%=profile.picture_name%>" style="margin-right:30px;border-radius:100%;height:200px;width:200px">
                 <%}else{%>
-                  <img src="/img/user.png" style="margin-right:30px;border-radius:100%;height:200px;width:200px">  
+                  <img src="/img/user.png" style="margin-right:30px;border-radius:100%;height:200px;width:200px">
                 <%}%>
               </div>
               <div class="six wide column" style="text-align:left;">
                 <h2><%=profile.getFullName()%> <a href="/profile/edit"><i class="edit icon"></i></a></h2>
                 <span><%=profile.email%></span><br>
                 <span><%=profile.phone_number%></span><br>
-                <span>Jumlah Pesanan : <%=profile.Movies.length%> kali</span><br>
-                <span><a href="/profile/history">History Pembelian</a></span>
+                <%if(sessions.role == 'admin'){%>
+                  <span style="font-size:18px;"><a href="/profile/history">History Penjualan</a></span>
+                <%}else{%>
+                  <span>Jumlah Pesanan : <%=profile.Movies.length%> kali</span><br>
+                  <span style="font-size:18px;"><a href="/profile/history">History Pembelian</a></span>
+                <%}%>
               </div>
           </div>
         </div>

@@ -16,7 +16,11 @@ router.get('/', function(req, res) {
     }
   })
   .then(profile => {
-    res.render('profile/index', {profile: profile, sessions:req.session, title:'Profile'})
+    if(profile){
+      res.render('profile/index', {profile: profile, sessions:req.session, title:'Profile'})
+    }else{
+      res.redirect('/profile/create')
+    }
   })
 })
 
@@ -55,17 +59,29 @@ router.post('/edit', function(req, res) {
 })
 
 router.get('/history', (req, res) => {
-  Model.Profile.findOne({where:{UserId:req.session.UserId}}).then(profile => {
+  if(req.session.role == 'admin'){
     Model.ProfileMovie.findAll({
-      include:{
-        model: Model.Movie
-      },
-      where:{ProfileId:profile.id}
+      include:[
+        {model: Model.Movie},
+        {model: Model.Profile}
+      ]
     }).then(dataHistory => {
       res.render('profile/history', {history:dataHistory, sessions:req.session,  title:'Riwayat Pembelian'})
       // res.send(dataHistory)
     })
-  })
+  }else{
+    Model.Profile.findOne({where:{UserId:req.session.UserId}}).then(profile => {
+      Model.ProfileMovie.findAll({
+        include:{
+          model: Model.Movie
+        },
+        where:{ProfileId:profile.id}
+      }).then(dataHistory => {
+        res.render('profile/history', {history:dataHistory, sessions:req.session,  title:'Riwayat Pembelian'})
+        // res.send(dataHistory)
+      })
+    })
+  }
 })
 
 module.exports = router

@@ -9,7 +9,11 @@
         <div class="ui middle aligned stackable grid container">
           <div class="row">
             <div class="center aligned column">
-              <h3>Daftar Riwayat Pesanan</h3>
+              <%if(sessions.role == 'admin'){%>
+                <h3>Daftar Riwayat Penjualan</h3>
+              <%}else{%>
+                <h3>Daftar Riwayat Pesanan</h3>
+              <%}%>
             </div>
           </div>
           <table class="ui celled table">
@@ -19,6 +23,9 @@
                 <th>Kode Tiket</th>
                 <th>Judul Film</th>
                 <th>Total</th>
+                <%if(sessions.role == 'admin'){%>
+                  <th>Nama Pemesan</th>
+                <%}%>
               </tr>
             </thead>
             <tbody>
@@ -28,6 +35,9 @@
                   <td><%=his.ticket_code%></td>
                   <td><%if(his.Movie){%><%=his.Movie.title%><%}else{%>deleted<%}%></td>
                   <td><%if(his.Movie){%><%=his.Movie.ticket_price%><%}else{%>deleted<%}%></td>
+                  <%if(sessions.role == 'admin'){%>
+                    <td><%=his.Profile.getFullName()%></td>
+                  <%}%>
                 </tr>
               <%})%>
             </tbody>
