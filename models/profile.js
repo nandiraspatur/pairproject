@@ -51,7 +51,8 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'duplicate email'
         }
-      }
+      },
+      picture_name: DataTypes.STRING
     });
 
   Profile.prototype.getFullName = function () {

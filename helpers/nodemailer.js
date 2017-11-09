@@ -18,19 +18,19 @@ module.exports = function(content) {
 
       // setup email data with unicode symbols
       let mailOptions = {
-          from: 'Fox Office Movie <xfullx.gamerz@gmail.com>', // sender address
+          from: 'Fox Cinema <xfullx.gamerz@gmail.com>', // sender address
           to: content.profileEmail, // list of receivers
           subject: 'Ticket Detail', // Subject line
           // text: `${content}`, // plain text body
           html: `Dear ${content.profileName},<br><br>
-          Terima kasih sudah membeli tiket di Fox Office.<br>
+          Terima kasih sudah membeli tiket di Fox Cinema.<br>
           Berikut adalah detail pembelian tiket Anda:<br>
           Kode tiket: <b>${content.ticket}</b><br>
           Judul: ${content.movieTitle}<br>
           Time: ${content.movieSchedule} WIB @ ${content.movieStudio}<br>
           Tanggal pembelian: ${new Date(content.buyDate)}<br>
           Harga: Rp${content.ticketPrice}<br><br>
-          Tunjukkan <b>kode tiket<b> Anda pada saat datang ke Bioskop. Happy watching :)` // html body
+          Tunjukkan <b>kode tiket</b> Anda pada saat datang ke Bioskop. Happy watching :D` // html body
       };
 
       // send mail with defined transport object

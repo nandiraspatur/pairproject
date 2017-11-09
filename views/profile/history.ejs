@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partials/head.ejs%>
+  <body>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;<%if(history.length < 6){%>margin-bottom:200px;<%}else{%>margin-bottom:50px;<%}%>">
+        <div class="ui middle aligned stackable grid container">
+          <div class="row">
+            <div class="center aligned column">
+              <h3>Daftar Riwayat Pesanan</h3>
+            </div>
+          </div>
+          <table class="ui celled table">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Kode Tiket</th>
+                <th>Judul Film</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%history.forEach(his => {%>
+                <tr>
+                  <td><%=his.buy_date%></td>
+                  <td><%=his.ticket_code%></td>
+                  <td><%if(his.Movie){%><%=his.Movie.title%><%}else{%>deleted<%}%></td>
+                  <td><%if(his.Movie){%><%=his.Movie.ticket_price%><%}else{%>deleted<%}%></td>
+                </tr>
+              <%})%>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+      <%include ../partials/footer.ejs%>
+    </div>
+  </body>
+</html>
