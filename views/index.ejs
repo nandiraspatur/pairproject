@@ -27,6 +27,7 @@
             <a href="/schedules" class="item">Schedules</a>
 
             <div class="right item">
+
               <%if(sessions){%>
                 <%if(sessions.role == 'admin'){%>
                 <a href="/movies/add" class="ui inverted button">Add Movie</a>
@@ -42,7 +43,7 @@
         </div>
         <div class="ui text container">
           <h1 class="ui inverted header">
-            Box Office Movie.
+            FOX CINEMA
           </h1>
           <h2>
             Dapatkan Tiket Film Favoritmu Disini
@@ -66,7 +67,10 @@
                   <div class="ui card">
                     <%if(sessions){%>
                       <a href="/movies/edit/<%=movie.id%>">
-                        <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 15px;font-size:30px;color:#fff"></i>
+                        <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 50px;font-size:30px;color:#fff"></i>
+                      </a>
+                      <a href="/movies/delete/<%=movie.id%>">
+                        <i class="window close outline icon" style="position:absolute;z-index:999;margin:15px 0 0 10px;font-size:30px;color:#fff"></i>
                       </a>
                     <%}%>
                     <div class="image">
@@ -98,7 +102,7 @@
           </div>
           <div class="row">
             <div class="center aligned column">
-              <a href="/movies" class="ui huge button">Find More</a>
+              <a href="/movies" class="ui huge button">Selengkapnya</a>
             </div>
           </div>
         </div>

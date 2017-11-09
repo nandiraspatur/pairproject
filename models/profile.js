@@ -51,7 +51,8 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'UserId telah digunakan'
         }
-      }
+      },
+      picture_name: DataTypes.STRING
     });
 
   Profile.prototype.getFullName = function () {

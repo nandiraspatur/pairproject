@@ -9,15 +9,16 @@
         <div class="ui middle aligned stackable grid container">
           <div class="row">
             <div class="center aligned column">
-              <h3>Daftar Film</h3>
+              <h3><%=schedule.studio%></h3>
+              <p style="margin-bottom:50px;border-radius:3px;padding:5px;background:#2185D0;color:#fff;width:100px;margin:auto"><%=schedule.time%></p>
             </div>
           </div>
           <div class="ui four column row">
-            <%movies.forEach(movie => {%>
+            <%schedule.Movies.forEach(movie => {%>
               <div class="column">
                 <div class="ui segment">
                   <div class="ui card">
-                    <%if(sessions.role == 'admin'){%>
+                    <%if(auth.auth){%>
                       <a href="/movies/edit/<%=movie.id%>">
                         <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 50px;font-size:30px;color:#fff"></i>
                       </a>

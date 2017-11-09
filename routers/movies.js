@@ -71,7 +71,6 @@ router.get('/delete/:id', auth, function(req, res) {
 
 router.get('/book', auth, function(req, res) {
   res.render('movies/book', {sessions:req.session})
-
 })
 
 router.get('/:id/book', auth, function(req, res) {

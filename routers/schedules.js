@@ -17,4 +17,18 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/:id', (req, res) => {
+  Model.Schedule.findById(
+    req.params.id,
+    {
+      include: {
+        model: Model.Movie
+      }
+    }
+  ).then(schedule => {
+    // res.send(time)
+    res.render('schedules/time', {schedule:schedule, auth:req.session})
+  })
+})
+
 module.exports = router

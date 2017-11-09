@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Profile Page</title>
-  </head>
+  <%include ../partials/head.ejs%>
   <body>
-    <h1>Edit profile</h1>
-    <form class="" action="/profile/edit" method="post">
-      <label for="">First Name: </label>
-      <input type="text" name="first_name" value="<%= dataProfile.first_name %>"><br>
-      <label for="">Last Name: </label>
-      <input type="text" name="last_name" value="<%= dataProfile.last_name %>"><br>
-      <label for="">Email: </label>
-      <input type="email" name="email" value="<%= dataProfile.email %>"><br>
-      <label for="">Phone: </label>
-      <input type="text" name="phone_number" value="<%= dataProfile.phone_number %>"><br>
-      <input type="submit" value="Submit">
-    </form>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container center aligned">
+          <div class="row five wide column">
+            <h2>Edit data Profile</h2>
+            <form class="ui form segment" action="/profile/edit" method="post">
+              <div class="field">
+                <label style="text-align:left">Nama Depan</label>
+                <input type="text" name="first_name" placeholder="Nama Depan" value="<%= dataProfile.first_name %>">
+              </div>
+              <div class="field">
+                <label style="text-align:left">Nama Belakang</label>
+                <input type="text" name="last_name" placeholder="Nama Belakang" value="<%= dataProfile.last_name %>">
+              </div>
+              <div class="field">
+                <label style="text-align:left">Email</label>
+                <input type="text" name="email" placeholder="Email" value="<%= dataProfile.email %>">
+              </div>
+              <div class="field">
+                <label style="text-align:left">Telepon</label>
+                <input type="text" name="phone_number" placeholder="No Telepon" value="<%= dataProfile.phone_number %>">
+              </div>
+              <input class="ui primary button" type="submit" value="Submit">
+            </form>
+          </div>
+        </div>
+      </div>
+      <%include ../partials/footer.ejs%>
+    </div>
   </body>
 </html>

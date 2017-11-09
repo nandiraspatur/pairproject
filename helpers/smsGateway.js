@@ -2,11 +2,11 @@ smsGateway = require('sms-gateway-nodejs')('nandirasp@gmail.com', 'book8Nexmo')
 
 module.exports = function(ticket_code, phone_number) {
   let msg = [
-    'FoxTicket,',
+    'Fox Cinema,',
     'Berikut adalah kode tiket anda :',
     ticket_code,
     'Silakan tunjukan kode tersebut pada saat datang ke Bioskop.',
-    'Happy Wacthing :D'
+    'Happy Watching :D'
   ]
 
   let message = msg.join('\n')

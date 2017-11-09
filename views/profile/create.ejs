@@ -10,7 +10,7 @@
           <div class="row five wide column">
             <h2>Silakan isi form berikut sebelum melakukan pemesanan :</h2>
             <!-- form -->
-            <form class="ui form segment" action="/profile/create" method="post">
+            <form class="ui form segment" action="/profile/create" method="post" enctype="multipart/form-data">
               <div class="field">
                 <label style="text-align:left">Nama Depan</label>
                 <input type="text" name="first_name" placeholder="Nama Depan">
@@ -26,6 +26,10 @@
               <div class="field">
                 <label style="text-align:left">Telepon</label>
                 <input type="text" name="phone_number" placeholder="Awali dengan kode prefix (+62)">
+              </div>
+              <div class="field">
+                <label>Foto Profile</label>
+                <input type="file" name="pic">
               </div>
               <input class="ui primary button" type="submit" value="Submit">
               <div class="ui error message"></div>
