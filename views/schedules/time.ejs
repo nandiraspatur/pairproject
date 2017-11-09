@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partials/head.ejs%>
+  <body>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container">
+          <div class="row">
+            <div class="center aligned column">
+              <h3><%=schedule.studio%></h3>
+              <p style="margin-bottom:50px;border-radius:3px;padding:5px;background:#2185D0;color:#fff;width:100px;margin:auto"><%=schedule.time%></p>
+            </div>
+          </div>
+          <div class="ui four column row">
+            <%schedule.Movies.forEach(movie => {%>
+              <div class="column">
+                <div class="ui segment">
+                  <div class="ui card">
+                    <%if(sessions.auth){%>
+                      <a href="/movies/edit/<%=movie.id%>">
+                        <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 50px;font-size:30px;color:#fff"></i>
+                      </a>
+                      <a href="/movies/delete/<%=movie.id%>">
+                        <i class="window close outline icon" style="position:absolute;z-index:999;margin:15px 0 0 10px;font-size:30px;color:#fff"></i>
+                      </a>
+                    <%}%>
+                    <div class="image">
+                      <img src="/uploads/<%=movie.picture_name%>">
+                    </div>
+                    <div class="content">
+                      <div class="header">
+                        <%=movie.title%>
+                      </div>
+                      <div class="description">
+                        <%var des = movie.description.slice(0, 82)%>
+                        <%=des%>...
+                      </div>
+                    </div>
+                    <div class="ui two bottom attached buttons">
+                      <a class="ui button" href="/movies/<%=movie.id%>" style="color:#333">
+                        <i class="add icon"></i>
+                        Detail
+                      </a>
+                      <a class="ui primary button" href="/movies/<%=movie.id%>/book" style="color:#fff">
+                        <i class="shop icon"></i>
+                        Pesan
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <%})%>
+          </div>
+        </div>
+      </div>
+      <%include ../partials/footer.ejs%>
+    </div>
+  </body>
+</html>

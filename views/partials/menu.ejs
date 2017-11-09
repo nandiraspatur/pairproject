@@ -1,0 +1,29 @@
+<div class="ui large top fixed menu" style="z-index:999">
+  <div class="ui container">
+    <a href="/" class="item">Home</a>
+    <a href="/movies" class="item">Movies</a>
+    <a href="/schedules" class="item">Schedules</a>
+    <div class="right menu">
+      <%if(sessions.auth){%>
+        <div class="item">
+          <a href="/profile" class="primary ui button">Profile</a>
+        </div>
+        <%if(sessions.role == 'admin'){%>
+        <div class="item">
+          <a href="/movies/add" class="primary ui button">Add Movie</a>
+        </div>
+        <%}%>
+        <div class="item">
+          <a href="/logout" class="red ui button">Logout</a>
+        </div>
+      <%}else{%>
+        <div class="item">
+          <a href="/signin" class="ui button">Sign in</a>
+        </div>
+        <div class="item">
+          <a href="/signup" class="ui primary button">Sign Up</a>
+        </div>
+      <%}%>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partials/head.ejs%>
+  <body>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container">
+          <div class="ui internally celled grid center aligned">
+            <div class="row" style="top-border:none">
+              <div class="center aligned column">
+                <h3>Detail Tiket</h3>
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+              <div class="three wide column" style="margin-top:40px;">
+                <img src="/uploads/<%=movie.picture_name%>">
+              </div>
+              <div class="six wide column" style="font-size:20px;margin-top:10px;">
+                <table class="ui celled table">
+                  <tbody>
+                    <tr>
+                      <td>Nama</td>
+                      <td>:</td>
+                      <td><%=profile.getFullName()%></td>
+                    </tr>
+                    <tr>
+                      <td>Judul Film</td>
+                      <td>:</td>
+                      <td><%=movie.title%></td>
+                    </tr>
+                    <tr>
+                      <td>Durasi Film</td>
+                      <td>:</td>
+                      <td><%=movie.duration%> menit</td>
+                    </tr>
+                    <tr>
+                      <td>Harga Tiket</td>
+                      <td>:</td>
+                      <td>Rp. <%=movie.ticket_price%></td>
+                    </tr>
+                    <tr>
+                      <td>Jam Tayang</td>
+                      <td>:</td>
+                      <td><%=movie.Schedule.time%></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <a style="margin-top: 20px;margin-bottom:100px;" class="ui large primary button" href="/movies/<%=movie.id%>/book/confirm">Pesan Sekarang <i class="right arrow icon"></i></a>
+          </div>
+        </div>
+      <%include ../partials/footer.ejs%>
+    </div>
+  </body>
+</html>

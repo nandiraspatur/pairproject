@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <%include ./partials/head.ejs%>
+  <body>
+    <%include ./partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container">
+          <div class="ui text container">
+            <div class="ui grid center aligned" style="margin-top:60px;margin-bottom:60px">
+              <div class="ten wide column login-area">
+                <!-- form -->
+                <form class="ui form" action="/signin" method="post">
+                  <h2 style="color:#fff">Member Login</h2>
+                  <div class="ui left icon input field" style="margin-top:15px">
+                    <input type="text" name="username" placeholder="Username" type="text">
+                    <i class="user icon"></i>
+                  </div>
+                  <div class="ui left icon input field" style="margin-top:10px;">
+                    <input type="password" name="password" placeholder="Password" type="text">
+                    <i class="privacy icon"></i>
+                  </div>
+                  <div class="ui">
+                    <input type="submit" value="Sign in" class="ui inverted button" style="margin-top:10px;margin-bottom:40px">
+                  </div>
+                  <span>Belum punya akun? <a href="/signup" style="color:#fff">Sign Up</a></span>
+                  <div class="ui error message"></div>
+                  <% if(error) { %>
+                    <div class="ui red message"><%= error %></div>
+                  <% } %>
+                </form>
+                <!-- End form -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%include ./partials/footer.ejs%>
+    </div>
+  </body>
+  <script type="text/javascript">
+  $('.ui.form')
+    .form({
+      fields: {
+        username: {
+          identifier: 'username',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Username tidak boleh kosong'
+            }
+          ]
+        },
+        password: {
+          identifier: 'password',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Password tidak boleh kosong'
+            }
+          ]
+        }
+      }
+    })
+  ;
+  </script>
+</html>

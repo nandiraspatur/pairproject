@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partials/head.ejs%>
+  <body>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;margin-bottom:40px;">
+        <div class="ui middle aligned stackable grid container">
+          <div class="row">
+            <div class="center aligned column">
+              <h3>Jadwal Tayang Film</h3>
+            </div>
+          </div>
+          <table class="ui fixed table" style="font-size:18px">
+            <tbody>
+              <%schedules.forEach(schedule => {%>
+                <tr>
+                  <td class="center aligned">
+                    <a href="/schedules/<%=schedule.id%>" style="display:block; background:#2185D0; padding:5px; width:100px; margin:auto; color:white; border-radius:2px"><%=schedule.time%></a>
+                    <%=schedule.studio%>
+                  </td>
+                  <td class="left aligned">
+                    <%schedule.Movies.forEach(movie => {%>
+                      <ul>
+                        <li><a href="/movies/<%=movie.id%>"><%=movie.title%></a></li>
+                      </ul>
+                    <%})%>
+                  </td>
+                </tr>
+              <%})%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <%include ../partials/footer.ejs%>
+    </div>
+  </body>
+</html>

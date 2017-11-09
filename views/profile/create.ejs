@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partials/head.ejs%>
+  <body>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container center aligned">
+          <div class="row five wide column">
+            <h2>Silakan isi form berikut sebelum melakukan pemesanan :</h2>
+            <!-- form -->
+            <form class="ui form segment" action="/profile/create" method="post" enctype="multipart/form-data">
+              <div class="field">
+                <label style="text-align:left">Nama Depan</label>
+                <input type="text" name="first_name" placeholder="Nama Depan">
+              </div>
+              <div class="field">
+                <label style="text-align:left">Nama Belakang</label>
+                <input type="text" name="last_name" placeholder="Nama Belakang">
+              </div>
+              <div class="field">
+                <label style="text-align:left">Email</label>
+                <input type="email" name="email" placeholder="Email">
+              </div>
+              <div class="field">
+                <label style="text-align:left">Telepon</label>
+                <input type="text" name="phone_number" placeholder="Awali dengan kode prefix (+62)">
+              </div>
+              <div class="field">
+                <label>Foto Profile</label>
+                <input type="file" name="pic">
+              </div>
+              <input class="ui primary button" type="submit" value="Submit">
+              <div class="ui error message"></div>
+              <% if(error) { %>
+                <div class="ui red message"><%= error %></div>
+              <% } %>
+            </form>
+            <!-- End form -->
+          </div>
+        </div>
+      </div>
+      <%include ../partials/footer.ejs%>
+    </div>
+  </body>
+  <script type="text/javascript">
+  $('.ui.form')
+    .form({
+      fields: {
+        first_name: {
+          identifier: 'first_name',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Nama depan tidak boleh kosong'
+            }
+          ]
+        },
+        last_name: {
+          identifier: 'last_name',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Nama belakang tidak boleh kosong'
+            }
+          ]
+        },
+        email: {
+          identifier: 'email',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Email tidak boleh kosong'
+            }
+          ]
+        },
+        phone_number: {
+          identifier: 'phone_number',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'No Telepon tidak boleh kosong'
+            },
+            {
+              type: 'regExp',
+              value: /(\+62)/g,
+              prompt : 'No Telepon harus diawali kode prefix negara ex: Indonesia(+62)'
+            }
+          ]
+        }
+      }
+    })
+  ;
+  </script>
+</html>
