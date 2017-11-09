@@ -10,7 +10,7 @@ const Model = require('../models')
 router.get('/', function(req, res) {
   Model.Movie.findAll({limit:4}).then(movies => {
     // res.send(movies)
-    res.render('index', {movies:movies, auth:req.session.auth})
+    res.render('index', {movies:movies, sessions:req.session})
   })
 })
 
@@ -18,7 +18,7 @@ router.get('/signup', function(req, res) {
   if(req.session.auth) {
     res.redirect('/profile')
   } else {
-    res.render('signup', {error: false, auth:req.session.auth})
+    res.render('signup', {error: false, sessions:req.session})
   }
 })
 
@@ -30,7 +30,7 @@ router.post('/signup', function(req, res) {
   .catch(error => {
     // res.send(error.errors[0].message)
     let errorMsg = error.errors[0].message
-    res.render('signup', {error: errorMsg, auth:req.session.auth})
+    res.render('signup', {error: errorMsg, sessions:req.session})
   })
 })
 
@@ -38,7 +38,7 @@ router.get('/signin', function(req, res) {
   if(req.session.auth) {
     res.redirect('/profile')
   } else {
-    res.render('signin', {error: false, auth:req.session.auth})
+    res.render('signin', {error: false, sessions:req.session})
   }
 })
 
@@ -52,7 +52,8 @@ router.post('/signin', function(req, res) {
         req.session.auth = true
         req.session.UserId = user.id
         req.session.username = req.body.username
-        req.session.role = req.body.role
+        req.session.role = user.role
+        console.log(req.session);
         Model.Profile.findOne({where : {UserId: req.session.UserId}})
         .then(profile => {
           if(profile) {
@@ -64,12 +65,12 @@ router.post('/signin', function(req, res) {
       } else {
         let errorMsg = error.errors[0].message
         // res.send(errorMsg)
-        res.render('signin', {error: errorMsg, auth:req.session.auth})
+        res.render('signin', {error: errorMsg, sessions:req.session})
       }
     });
   })
   .catch(error => {
-    res.render('signin', {error: true, auth:req.session.auth})
+    res.render('signin', {error: true, sessions:req.session})
   })
 })
 

@@ -13,13 +13,13 @@ const Model = require('../models');
 router.get('/', function(req, res) {
   Model.Movie.findAll().then(movies => {
     // res.send(movies)
-    res.render('movies/index', {movies:movies, auth:req.session.auth})
+    res.render('movies/index', {movies:movies, sessions:req.session})
   })
 })
 
 router.get('/add', auth, function (req,res) {
   Model.Schedule.findAll().then(schedules => {
-    res.render('movies/add', {schedules:schedules, auth:req.session.auth})
+    res.render('movies/add', {schedules:schedules, sessions:req.session})
   })
 })
 
@@ -38,7 +38,7 @@ router.get('/:id', function (req, res) {
     }
   }).then(movie => {
     // res.send(movie)
-    res.render('movies/detail', {movie:movie, auth:req.session.auth})
+    res.render('movies/detail', {movie:movie, sessions:req.session})
   })
 })
 
@@ -47,7 +47,7 @@ router.get('/edit/:id', auth, function(req,res) {
     Model.Movie.findById(req.params.id),
     Model.Schedule.findAll()
   ]).then(rows => {
-    res.render('movies/edit', {movie: rows[0], schedules:rows[1], auth:req.session.auth})
+    res.render('movies/edit', {movie: rows[0], schedules:rows[1], sessions:req.session})
   }).catch(error => {
     res.send(error)
   })
@@ -70,7 +70,7 @@ router.get('/delete/:id', auth, function(req, res) {
 })
 
 router.get('/book', auth, function(req, res) {
-  res.render('movies/book', {auth:req.session.auth})
+  res.render('movies/book', {sessions:req.session})
 
 })
 
@@ -84,7 +84,7 @@ router.get('/:id/book', auth, function(req, res) {
     Model.Profile.findOne({where:{UserId:req.session.UserId}})
   ]).then(rows => {
     // res.send(movie)
-    res.render('movies/book', {movie:rows[0], profile:rows[1], auth:req.session.auth})
+    res.render('movies/book', {movie:rows[0], profile:rows[1], sessions:req.session})
   })
 })
 

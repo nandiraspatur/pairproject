@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'first name is required'
+          msg: 'Nama depan tidak boleh kosong'
         },
         is: {
           args: /^[a-z]+$/i,
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: {
             args: true,
-            msg: 'last name is required'
+            msg: 'Nama belakang tidak boleh kosong'
           },
           is: {
             args: /^[a-z]+$/i,
@@ -32,16 +32,16 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: {
             args: true,
-            msg: 'email is required'
+            msg: 'Email tidak boleh kosong'
           },
           isEmail: {
             args: true,
-            msg: 'incorrect format email'
+            msg: 'Format email salah'
           }
         },
         unique: {
           args: true,
-          msg: 'duplicate email'
+          msg: 'Email telah digunakan'
         }
       },
       phone_number: DataTypes.STRING,
@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         unique: {
           args: true,
-          msg: 'duplicate email'
+          msg: 'UserId telah digunakan'
         }
       }
     });
