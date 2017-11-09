@@ -18,7 +18,7 @@
               <div class="column">
                 <div class="ui segment">
                   <div class="ui card">
-                    <%if(auth.auth){%>
+                    <%if(sessions.auth){%>
                       <a href="/movies/edit/<%=movie.id%>">
                         <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 50px;font-size:30px;color:#fff"></i>
                       </a>
@@ -44,7 +44,7 @@
                         Detail
                       </a>
                       <a class="ui primary button" href="/movies/<%=movie.id%>/book" style="color:#fff">
-                        <i class="play icon"></i>
+                        <i class="shop icon"></i>
                         Pesan
                       </a>
                     </div>

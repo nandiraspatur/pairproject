@@ -16,16 +16,18 @@ router.get('/', function(req, res) {
     }
   })
   .then(profile => {
-    res.render('profile/index', {dataProfile: profile, sessions:req.session})
+    res.render('profile/index', {profile: profile, sessions:req.session, title:'Profile'})
   })
 })
 
 router.get('/create', function(req, res) {
-  res.render('profile/create', {UserId: req.session.UserId, error: false, sessions:req.session})
+  res.render('profile/create', {UserId: req.session.UserId, error: false, sessions:req.session,  title:'Tambah Data Profile'})
 })
 
 router.post('/create', upload.single('pic'), function (req, res, next) {
-  req.body.picture_name = req.file.filename
+  if(req.file){
+    req.body.picture_name = req.file.filename
+  }
   req.body.UserId = req.session.UserId
   Model.Profile.create(req.body)
   .then(() => {
@@ -41,7 +43,7 @@ router.post('/create', upload.single('pic'), function (req, res, next) {
 router.get('/edit', function(req, res) {
   Model.Profile.findOne({where: {UserId: req.session.UserId}})
   .then(profile => {
-    res.render('profile/edit', {dataProfile: profile, sessions:req.session})
+    res.render('profile/edit', {dataProfile: profile, sessions:req.session, title:'Edit Profile'})
   })
 })
 
@@ -60,7 +62,7 @@ router.get('/history', (req, res) => {
       },
       where:{ProfileId:profile.id}
     }).then(dataHistory => {
-      res.render('profile/history', {history:dataHistory, auth:req.session})
+      res.render('profile/history', {history:dataHistory, sessions:req.session,  title:'Riwayat Pembelian'})
       // res.send(dataHistory)
     })
   })

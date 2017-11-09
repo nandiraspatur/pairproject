@@ -10,7 +10,8 @@ const Model = require('../models')
 router.get('/', function(req, res) {
   Model.Movie.findAll({limit:4}).then(movies => {
     // res.send(movies)
-    res.render('index', {movies:movies, sessions:req.session})
+    console.log(req.session);
+    res.render('index', {movies:movies, sessions:req.session, title:'Home Page'})
   })
 })
 
@@ -18,7 +19,7 @@ router.get('/signup', function(req, res) {
   if(req.session.auth) {
     res.redirect('/profile')
   } else {
-    res.render('signup', {error: false, sessions:req.session})
+    res.render('signup', {error: false, sessions:req.session, title:'Registrasi'})
   }
 })
 
@@ -30,7 +31,7 @@ router.post('/signup', function(req, res) {
   .catch(error => {
     // res.send(error.errors[0].message)
     let errorMsg = error.errors[0].message
-    res.render('signup', {error: errorMsg, sessions:req.session})
+    res.render('signup', {error: errorMsg, sessions:req.session, title:'Registrasi'})
   })
 })
 
@@ -38,7 +39,7 @@ router.get('/signin', function(req, res) {
   if(req.session.auth) {
     res.redirect('/profile')
   } else {
-    res.render('signin', {error: false, sessions:req.session})
+    res.render('signin', {error: false, sessions:req.session,  title:'Sign In'})
   }
 })
 

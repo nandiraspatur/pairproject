@@ -20,27 +20,27 @@
                     <%=movie.description%>
                   </div>
                   <div class="row" style="margin-top: 20px">
-                    <table align="center" style="text-align:left;">
+                    <table class="ui celled table">
                       <tbody>
                         <tr>
-                          <th class="left aligned">Genre</th>
-                          <td> : </td>
-                          <td><%=movie.genre%></td>
+                          <th class="right aligned">Genre</th>
+                          <td class="center aligned"> : </td>
+                          <td class="left aligned"><%=movie.genre%></td>
                         </tr>
                         <tr>
-                          <th>Durasi</th>
-                          <td> : </td>
-                          <td><%=movie.duration%></td>
+                          <th class="right aligned">Durasi</th>
+                          <td class="center aligned"> : </td>
+                          <td class="left aligned"><%=movie.duration%> menit</td>
                         </tr>
                         <tr>
-                          <th>Harga Tiket</th>
-                          <td> : </td>
-                          <td><%=movie.ticket_price%></td>
+                          <th class="right aligned">Harga Tiket</th>
+                          <td class="center aligned"> : </td>
+                          <td class="left aligned">Rp. <%=movie.ticket_price%></td>
                         </tr>
                         <tr>
-                          <th>Jadwal</th>
-                          <td> : </td>
-                          <td><%=movie.Schedule.time%></td>
+                          <th class="right aligned">Jam Tayang</th>
+                          <td class="center aligned"> : </td>
+                          <td class="left aligned"><%=movie.Schedule.time%> WIB</td>
                         </tr>
                       </tbody>
                     </table>

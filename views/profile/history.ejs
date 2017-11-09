@@ -24,7 +24,7 @@
             <tbody>
               <%history.forEach(his => {%>
                 <tr>
-                  <td><%=his.buy_date%></td>
+                  <td><%=new Date(his.buy_date)%></td>
                   <td><%=his.ticket_code%></td>
                   <td><%if(his.Movie){%><%=his.Movie.title%><%}else{%>deleted<%}%></td>
                   <td><%if(his.Movie){%><%=his.Movie.ticket_price%><%}else{%>deleted<%}%></td>

@@ -8,7 +8,7 @@ module.exports = {
       description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
       duration: 120,
       ticket_price: 50000,
-      ScheduleId: 1
+      ScheduleId: 1,
     },{
       title: 'The Lord of The Rings - The Two Tower',
       genre: 'Adventure',

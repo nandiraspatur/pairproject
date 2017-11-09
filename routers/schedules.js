@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     }
   }).then(schedules => {
     // res.send(schedules)
-    res.render('schedules', {schedules:schedules, sessions:req.session})
+    res.render('schedules', {schedules:schedules, sessions:req.session,  title:'Jadwal Film'})
   })
 })
 
@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
     }
   ).then(schedule => {
     // res.send(time)
-    res.render('schedules/time', {schedule:schedule, auth:req.session})
+    res.render('schedules/time', {schedule:schedule, sessions:req.session,  title:'Daftar Film Jadwal'})
   })
 })
 

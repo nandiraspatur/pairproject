@@ -13,13 +13,13 @@ const Model = require('../models');
 router.get('/', function(req, res) {
   Model.Movie.findAll().then(movies => {
     // res.send(movies)
-    res.render('movies/index', {movies:movies, sessions:req.session})
+    res.render('movies/index', {movies:movies, sessions:req.session,  title:'Daftar Film'})
   })
 })
 
 router.get('/add', auth, function (req,res) {
   Model.Schedule.findAll().then(schedules => {
-    res.render('movies/add', {schedules:schedules, sessions:req.session})
+    res.render('movies/add', {schedules:schedules, sessions:req.session,  title:'Tambah Film Baru'})
   })
 })
 
@@ -38,7 +38,7 @@ router.get('/:id', function (req, res) {
     }
   }).then(movie => {
     // res.send(movie)
-    res.render('movies/detail', {movie:movie, sessions:req.session})
+    res.render('movies/detail', {movie:movie, sessions:req.session,  title:'Detail Film'})
   })
 })
 
@@ -47,7 +47,7 @@ router.get('/edit/:id', auth, function(req,res) {
     Model.Movie.findById(req.params.id),
     Model.Schedule.findAll()
   ]).then(rows => {
-    res.render('movies/edit', {movie: rows[0], schedules:rows[1], sessions:req.session})
+    res.render('movies/edit', {movie: rows[0], schedules:rows[1], sessions:req.session, title:'Edit Film'})
   }).catch(error => {
     res.send(error)
   })
@@ -83,7 +83,11 @@ router.get('/:id/book', auth, function(req, res) {
     Model.Profile.findOne({where:{UserId:req.session.UserId}})
   ]).then(rows => {
     // res.send(movie)
-    res.render('movies/book', {movie:rows[0], profile:rows[1], sessions:req.session})
+    if(rows[1]){
+      res.render('movies/book', {movie:rows[0], profile:rows[1], sessions:req.session,  title:'Booking Film'})
+    }else{
+      res.redirect('/profile/create')
+    }
   })
 })
 
