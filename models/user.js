@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'username is required'
+          msg: 'Username tidak boleh kosong'
         }
       },
       unique: {
         args: true,
-        msg: 'duplicate email'
+        msg: 'Username telah digunakan'
       }
     },
     password: {
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'password is required'
+          msg: 'Password tidak boleh kosong'
         }
       }
     },
