@@ -13,7 +13,21 @@ router.get('/', (req, res) => {
     }
   }).then(schedules => {
     // res.send(schedules)
-    res.render('schedules', {schedules:schedules, auth:req.session.auth})
+    res.render('schedules', {schedules:schedules, auth:req.session})
+  })
+})
+
+router.get('/:id', (req, res) => {
+  Model.Schedule.findById(
+    req.params.id,
+    {
+      include: {
+        model: Model.Movie
+      }
+    }
+  ).then(schedule => {
+    // res.send(time)
+    res.render('schedules/time', {schedule:schedule, auth:req.session})
   })
 })
 
