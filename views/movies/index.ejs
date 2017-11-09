@@ -16,37 +16,36 @@
             <%movies.forEach(movie => {%>
               <div class="column">
                 <div class="ui segment">
-                  <div class="ui card" data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>">
+                  <div class="ui card">
+                    <a href="/movies/edit/<%=movie.id%>">
+                      <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 15px;font-size:30px;color:#fff"></i>
+                    </a>
                     <div class="image">
-                      <img src="/img/tes.jpg">
+                      <img src="/uploads/<%=movie.picture_name%>">
                     </div>
                     <div class="content">
                       <div class="header">
                         <%=movie.title%>
                       </div>
                       <div class="description">
-                        <%=movie.description%>
+                        <%var des = movie.description.slice(0, 82)%>
+                        <%=des%>...
                       </div>
                     </div>
                     <div class="ui two bottom attached buttons">
                       <div class="ui button">
                         <i class="add icon"></i>
-                        More
+                        <a href="/movies/<%=movie.id%>" style="color:#333">Detail</a>
                       </div>
                       <div class="ui primary button">
                         <i class="play icon"></i>
-                        Pesan
+                        <a href="/movies/<%=movie.id%>/book" style="color:#fff">Pesan</a>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             <%})%>
-          </div>
-          <div class="row">
-            <div class="center aligned column">
-              <a class="ui huge button">Find More</a>
-            </div>
           </div>
         </div>
       </div>

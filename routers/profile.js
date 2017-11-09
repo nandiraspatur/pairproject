@@ -18,6 +18,7 @@ router.get('/create', function(req, res) {
 })
 
 router.post('/create', function(req, res) {
+  req.body.UserId = req.session.UserId
   Model.Profile.create(req.body)
   .then(() => {
     res.redirect('/profile')

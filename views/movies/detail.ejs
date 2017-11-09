@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partials/head.ejs%>
+  <body>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container">
+          <div class="row">
+            <div class="center aligned column">
+              <h3><%=movie.title%></h3>
+            </div>
+          </div>
+          <div class="row center aligned">
+              <div class="wide column">
+                <div class="ui text container">
+                  <iframe width="560" height="315" src="<%=movie.trailer_link%>" frameborder="0" allowfullscreen></iframe>
+                  <div class="description" style="margin-top: 20px">
+                    <%=movie.description%>
+                  </div>
+                  <div class="row" style="margin-top: 20px">
+                    <table align="center" style="text-align:left;">
+                      <tbody>
+                        <tr>
+                          <th class="left aligned">Genre</th>
+                          <td> : </td>
+                          <td><%=movie.genre%></td>
+                        </tr>
+                        <tr>
+                          <th>Durasi</th>
+                          <td> : </td>
+                          <td><%=movie.duration%></td>
+                        </tr>
+                        <tr>
+                          <th>Harga Tiket</th>
+                          <td> : </td>
+                          <td><%=movie.ticket_price%></td>
+                        </tr>
+                        <tr>
+                          <th>Jadwal</th>
+                          <td> : </td>
+                          <td><%=movie.Schedule.time%></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <a style="margin-top: 20px" class="ui large primary button" href="/movies/<%=movie.id%>/book">Pesan Sekarang <i class="right arrow icon"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%include ../partials/footer.ejs%>
+    </div>
+  </body>
+</html>
