@@ -49,6 +49,7 @@ router.post('/signin', function(req, res) {
         req.session.auth = true
         req.session.UserId = user.id
         req.session.username = req.body.username
+        req.session.role = req.body.role
         Model.Profile.findOne({where : {UserId: req.session.UserId}})
         .then(profile => {
           if(profile) {
