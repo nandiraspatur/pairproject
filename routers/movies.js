@@ -37,6 +37,34 @@ router.get('/:id', function (req, res) {
     // res.send(movie)
     res.render('movies/detail', {movie:movie})
   })
+  
+router.get('/edit/:id', function(req,res) {
+  Model.Movie.findById(req.params.id).then(movie => {
+    res.render('movies/edit', {movie: movie})
+  }).catch(error => {
+    res.send(error)
+  })
+})
+
+router.post('/edit/:id', upload.single('pic'), function(req,res, next) {
+  Model.Movie.update(req.body, {where: req.params}).then(() => {
+    res.redirect('/movies')
+  }).catch(error => {
+    res.send(error)
+  })
+})
+
+router.get('/delete/:id', function(req, res) {
+  Model.Movie.destroy({where: req.params}).then(() => {
+    res.redirect('/movies')
+  }).catch(error => {
+    res.send(error)
+  })
+})
+
+router.get('/book', function(req, res) {
+  res.render('movies/book')
+
 })
 
 router.get('/:id/book', function(req, res) {

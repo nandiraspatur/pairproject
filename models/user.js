@@ -4,8 +4,28 @@ const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'username is required'
+        }
+      },
+      unique: {
+        args: true,
+        msg: 'duplicate email'
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'password is required'
+        }
+      }
+    },
     role: DataTypes.STRING
   }, {
     classMethods: {
