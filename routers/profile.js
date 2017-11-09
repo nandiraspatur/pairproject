@@ -40,7 +40,7 @@ router.post('/create', upload.single('pic'), function (req, res, next) {
   .catch(error => {
     // res.send(error.errors[0].message)
     let errorMsg = error.errors[0].message
-    res.render('profile/create', {UserId: req.session.UserId, error: errorMsg, sessions:req.session})
+    res.render('profile/create', {UserId: req.session.UserId, error: errorMsg, sessions:req.session, title:'Tambah Data Profile'})
   })
 })
 
