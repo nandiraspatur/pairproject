@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     }
   }).then(schedules => {
     // res.send(schedules)
-    res.render('schedules', {schedules:schedules, auth:req.session})
+    res.render('schedules', {schedules:schedules, sessions:req.session})
   })
 })
 

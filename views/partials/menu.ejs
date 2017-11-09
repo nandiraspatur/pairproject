@@ -4,13 +4,15 @@
     <a href="/movies" class="item">Movies</a>
     <a href="/schedules" class="item">Schedules</a>
     <div class="right menu">
-      <%if(auth.auth){%>
+      <%if(sessions){%>
         <div class="item">
           <a href="/profile" class="primary ui button">Profile</a>
         </div>
+        <%if(sessions.role == 'admin'){%>
         <div class="item">
           <a href="/movies/add" class="primary ui button">Add Movie</a>
         </div>
+        <%}%>
         <div class="item">
           <a href="/logout" class="red ui button">Logout</a>
         </div>

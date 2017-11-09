@@ -10,13 +10,14 @@
           <div class="ui text container">
             <div class="ui grid center aligned" style="margin-top:60px;margin-bottom:60px">
               <div class="ten wide column login-area">
-                <form action="/signup" method="post">
+                <!-- form -->
+                <form class="ui form" action="/signup" method="post">
                   <h2 style="color:#fff">Registrasi Member</h2>
-                  <div class="ui left icon input" style="margin-top:15px">
+                  <div class="ui left icon input field" style="margin-top:15px">
                     <input type="text" name="username" placeholder="Pilih Username Anda" type="text">
                     <i class="user icon"></i>
                   </div>
-                  <div class="ui left icon input" style="margin-top:10px;">
+                  <div class="ui left icon input field" style="margin-top:10px;">
                     <input type="password" name="password" placeholder="Buat Password Baru" type="text">
                     <i class="configure icon"></i>
                   </div>
@@ -25,7 +26,13 @@
                     <input type="submit" value="Sign Up" class="ui primary button" style="margin-top:10px;margin-bottom:40px">
                   </div>
                   <span>Sudah punya akun? <a href="/signin" style="color:#fff">Sign In</a></span>
+                  <div class="ui error message"></div>
+                  <% if(error) { %>
+                    <div class="ui red message"><%= error %></div>
+                  <% } %>
+                  </div>
                 </form>
+                <!-- End form -->
               </div>
             </div>
           </div>
@@ -34,4 +41,34 @@
       <%include ./partials/footer.ejs%>
     </div>
   </body>
+  <script type="text/javascript">
+  $('.ui.form')
+    .form({
+      fields: {
+        username: {
+          identifier: 'username',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Username tidak boleh kosong'
+            }
+          ]
+        },
+        password: {
+          identifier: 'password',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Password tidak boleh kosong'
+            },
+            {
+              type   : 'minLength[6]',
+              prompt : 'Panjang password minimal {ruleValue} karakter'
+            }
+          ]
+        }
+      }
+    })
+  ;
+  </script>
 </html>

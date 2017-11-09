@@ -27,9 +27,12 @@
             <a href="/schedules" class="item">Schedules</a>
 
             <div class="right item">
-              <%if(auth.auth){%>
-                <a href="/profile" class="ui inverted button">Profile</a>
+
+              <%if(sessions){%>
+                <%if(sessions.role == 'admin'){%>
                 <a href="/movies/add" class="ui inverted button">Add Movie</a>
+                <%}%>
+                <a href="/profile" class="ui inverted button">Profile</a>
                 <a href="/logout" class="ui inverted button">Logout</a>
               <%}else{%>
                 <a href="/signin" class="ui inverted button">Sign in</a>
@@ -62,7 +65,7 @@
               <div class="column">
                 <div class="ui segment">
                   <div class="ui card">
-                    <%if(auth.auth){%>
+                    <%if(sessions){%>
                       <a href="/movies/edit/<%=movie.id%>">
                         <i class="edit icon" style="position:absolute;z-index:999;margin:15px 0 0 50px;font-size:30px;color:#fff"></i>
                       </a>
