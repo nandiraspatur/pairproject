@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'public/uploads/' })
+const getCodeTicket = require('../helper/getCodeTicket')
 
 const Model = require('../models');
 
@@ -14,16 +15,29 @@ router.get('/', function(req, res) {
 })
 
 router.get('/add', function (req,res) {
-  res.render('movies/add')
+  Model.Schedule.findAll().then(schedules => {
+    res.render('movies/add', {schedules:schedules})
+  })
 })
 
 router.post('/add', upload.single('pic'), function (req, res, next) {
+  req.body.picture_name = req.file.filename
   console.log(req.body);
-  console.log(req.file);
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
+  Model.Movie.create(req.body).then(() => {
+    res.redirect('/movies')
+  })
 })
 
+router.get('/:id', function (req, res) {
+  Model.Movie.findById(req.params.id, {
+    include :{
+      model: Model.Schedule
+    }
+  }).then(movie => {
+    // res.send(movie)
+    res.render('movies/detail', {movie:movie})
+  })
+  
 router.get('/edit/:id', function(req,res) {
   Model.Movie.findById(req.params.id).then(movie => {
     res.render('movies/edit', {movie: movie})
@@ -50,14 +64,37 @@ router.get('/delete/:id', function(req, res) {
 
 router.get('/book', function(req, res) {
   res.render('movies/book')
+
 })
 
-router.post('/book', function(req, res) {
-  res.redirect('/movies/confirm')
+router.get('/:id/book', function(req, res) {
+  Promise.all([
+    Model.Movie.findById(req.params.id, {
+      include: {
+        model: Model.Schedule
+      }
+    }),
+    Model.Profile.findOne({where:{UserId:req.session.UserId}})
+  ]).then(rows => {
+    // res.send(movie)
+    res.render('movies/book', {movie:rows[0], profile:rows[1]})
+  })
 })
 
-router.get('/book/confirm', function(req, res) {
-  res.render('movies/confirm')
+router.get('/:id/book/confirm', function(req, res) {
+  Model.Profile.findOne({where:{UserId:req.session.UserId}}).then(profile => {
+    let date = new Date()
+    let pm = {
+      MovieId:req.params.id,
+      ProfileId:profile.id,
+      buy_date:date.toISOString(),
+      ticket_code: getCodeTicket()
+    }
+    console.log(pm);
+    Model.ProfileMovie.create(pm).then(() => {
+      res.redirect('/profile/history')
+    })
+  })
 })
 
 router.post('/book/confirm', function(req, res) {

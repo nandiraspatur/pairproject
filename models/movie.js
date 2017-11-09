@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     duration: DataTypes.INTEGER,
     ticket_price: DataTypes.INTEGER,
-    ScheduleId: DataTypes.INTEGER
+    ScheduleId: DataTypes.INTEGER,
+    trailer_link: DataTypes.STRING,
+    picture_name: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {

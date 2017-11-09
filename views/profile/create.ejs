@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Profile Page</title>
-  </head>
+  <%include ../partials/head.ejs%>
   <body>
-    <h1>Please complete your profile before booking tickets</h1>
-    <%if(error) { %>
-      <h4 style="color: red"><%= error %></h4>
-    <% } %>
-    <form class="" action="/profile/create" method="post">
-      <label for="">First Name</label>
-      <input type="text" name="first_name" placeholder="input your first name"><br>
-      <label for="">Last Name</label>
-      <input type="text" name="last_name" placeholder="input your last name"><br>
-      <label for="">Email</label>
-      <input type="email" name="email" placeholder="input your email address"><br>
-      <label for="">Phone</label>
-      <input type="text" name="phone_number" placeholder="input your phone number"><br>
-      <!-- set SubjectId-->
-      <input type="number" name="UserId" value="<%= UserId %>" hidden>
-      <!-- end set SubjectId-->
-      <input type="submit" value="Submit">
-    </form>
+    <%include ../partials/menu.ejs%>
+    <!--Page Contents-->
+    <div class="pusher">
+      <div class="ui vertical stripe segment" style="margin-top:40px;">
+        <div class="ui middle aligned stackable grid container center aligned">
+          <div class="row five wide column">
+            <h2>Silakan isi form berikut sebelum melakukan pemesanan :</h2>
+            <form class="ui form segment" action="/profile/create" method="post">
+              <div class="field">
+                <label style="text-align:left">Nama Depan</label>
+                <input type="text" name="first_name" placeholder="Nama Depan">
+              </div>
+              <div class="field">
+                <label style="text-align:left">Nama Belakang</label>
+                <input type="text" name="last_name" placeholder="Nama Belakang">
+              </div>
+              <div class="field">
+                <label style="text-align:left">Email</label>
+                <input type="text" name="email" placeholder="Email">
+              </div>
+              <div class="field">
+                <label style="text-align:left">Telepon</label>
+                <input type="text" name="phone_number" placeholder="No Telepon">
+              </div>
+              <input class="ui primary button" type="submit" value="Submit">
+            </form>
+          </div>
+        </div>
+      </div>
+      <%include ../partials/footer.ejs%>
+    </div>
   </body>
 </html>

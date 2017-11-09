@@ -31,17 +31,22 @@
                   </div>
                   <div class="two fields">
                     <div class="field">
-                      <label>Gender</label>
-                      <select class="ui dropdown" name="gender">
-                        <option value="">Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                      <label>Jam Tayang</label>
+                      <select class="ui dropdown" name="ScheduleId">
+                        <option value="">-pilih jam-</option>
+                        <%schedules.forEach(schedule => {%>
+                          <option value="<%=schedule.id%>"><%=schedule.time%></option>
+                        <%})%>
                       </select>
                     </div>
                     <div class="field">
                       <label>Harga Tiket</label>
                       <input type="text" name="ticket_price" placeholder="Harga Tiket">
                     </div>
+                  </div>
+                  <div class="field">
+                    <label>Trailer Link Embed</label>
+                    <input type="text" name="trailer_link">
                   </div>
                   <div class="field">
                     <label>Poster</label>
